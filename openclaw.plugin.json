@@ -1,0 +1,20 @@
+{
+  "id": "cubox",
+  "name": "Cubox",
+  "description": "Save URLs to Cubox bookmark service",
+  "version": "1.0.0",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "skills": ["./skills"],
+  "tools": ["./index.js"],
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "apiUrl": {
+        "type": "string",
+        "description": "Cubox Save API endpoint URL (includes your token). Get it from Cubox Settings → Extensions → API"
+      }
+    },
+    "required": []
+  }
+}

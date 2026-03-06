@@ -106,17 +106,6 @@ if [ -f "LICENSE" ] || [ -f "LICENSE.md" ]; then
     fi
 fi
 
-# 创建配置示例（如果不存在）
-if [ ! -f "$INSTALL_DIR/config.json" ]; then
-    if [ -f "config.example.json" ]; then
-        cp config.example.json "$INSTALL_DIR/config.json"
-        echo ""
-        echo "⚠️  Note: Created config.json from template."
-        echo "   Please edit $INSTALL_DIR/config.json"
-        echo "   and set your Cubox API URL."
-    fi
-fi
-
 # 复制 node_modules（如果需要）
 if [ -d "node_modules" ]; then
     cp -r node_modules "$INSTALL_DIR/"
@@ -131,11 +120,22 @@ echo "1. Get your Cubox API URL:"
 echo "   - Open Cubox app → Settings → Extensions → API"
 echo "   - Copy the endpoint URL (includes your token)"
 echo ""
-echo "2. Configure the plugin:"
-echo "   Edit $INSTALL_DIR/config.json"
+echo "2. Configure the plugin in OpenClaw main config file:"
+echo "   Edit ~/.openclaw/openclaw.json"
 echo ""
-echo "   Set apiUrl to your Cubox API endpoint:"
-echo '   { "apiUrl": "https://cubox.pro/c/api/save/YOUR_TOKEN" }'
+echo "   Add under 'plugins.entries.cubox.config':"
+echo '   {'
+echo '     "plugins": {'
+echo '       "enabled": true,'
+echo '       "entries": {'
+echo '         "cubox": {'
+echo '           "config": {'
+echo '             "apiUrl": "https://cubox.pro/c/api/save/YOUR_TOKEN"'
+echo '           }'
+echo '         }'
+echo '       }'
+echo '     }'
+echo '   }'
 echo ""
 echo "3. Restart OpenClaw Gateway:"
 echo "   openclaw gateway restart"

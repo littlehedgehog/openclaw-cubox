@@ -1,12 +1,28 @@
 /**
  * Cubox Plugin for OpenClaw
- * 
+ *
  * Save URLs to Cubox bookmark service.
- * 
+ *
  * Configuration:
- * - Set `apiUrl` in config.json OR
- * - Set `CUBOX_API_URL` environment variable
- * 
+ * - Set `apiUrl` in OpenClaw main config file under `plugins.entries.cubox.config`
+ * - Or set `CUBOX_API_URL` environment variable as fallback
+ *
+ * IMPORTANT: The config.json in plugin directory is NOT loaded automatically.
+ * All configuration must be in OpenClaw's main config file (~/.openclaw/openclaw.json):
+ *
+ * {
+ *   "plugins": {
+ *     "enabled": true,
+ *     "entries": {
+ *       "cubox": {
+ *         "config": {
+ *           "apiUrl": "https://cubox.pro/c/api/save/YOUR_TOKEN"
+ *         }
+ *       }
+ *     }
+ *   }
+ * }
+ *
  * Get your API URL from: Cubox Settings → Extensions → API
  */
 

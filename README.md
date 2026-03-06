@@ -83,21 +83,33 @@ cd /path/to/cubox
 
 ## Configuration
 
+**IMPORTANT**: The plugin does NOT load `config.json` from the plugin directory automatically.
+All configuration must be in OpenClaw's main config file (`~/.openclaw/openclaw.json`).
+
 1. Get your Cubox API URL:
    - Open Cubox app or web client
    - Go to **Settings → Extensions → API**
    - Enable API and copy the endpoint URL
    - Format: `https://cubox.pro/c/api/save/<your-token>`
 
-2. Create config file:
+2. Edit OpenClaw main config file:
    ```bash
-   nano ~/.openclaw/extensions/cubox/config.json
+   nano ~/.openclaw/openclaw.json
    ```
 
-3. Add your API URL:
+3. Add plugin configuration under `plugins.entries.cubox.config`:
    ```json
    {
-     "apiUrl": "https://cubox.pro/c/api/save/YOUR_TOKEN_HERE"
+     "plugins": {
+       "enabled": true,
+       "entries": {
+         "cubox": {
+           "config": {
+             "apiUrl": "https://cubox.pro/c/api/save/YOUR_TOKEN_HERE"
+           }
+         }
+       }
+     }
    }
    ```
 
@@ -143,7 +155,6 @@ save https://example.com to folder "Reading"
 | `index.ts` | Plugin main entry (TypeScript source) |
 | `openclaw.plugin.json` | Plugin definition for OpenClaw |
 | `skills/SKILL.md` | Skill documentation for AI |
-| `config.example.json` | Configuration template |
 | `package.json` | npm package definition |
 | `tsconfig.json` | TypeScript configuration |
 | `install.sh` | Installation script |

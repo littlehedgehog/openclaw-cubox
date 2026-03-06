@@ -167,7 +167,7 @@ MIT
 
 ## Author
 
-OpenClaw Community
+littlehedgehog@qq.com
 
 ## Links
 

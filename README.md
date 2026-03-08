@@ -30,16 +30,18 @@ openclaw plugins install @openclaw/cubox
 ```bash
 git clone https://github.com/littlehedgehog/openclaw-cubox.git
 cd openclaw-cubox
-npm install
+npm ci
 npm run build
-openclaw plugins install .
+npm pack
+openclaw plugins install ./openclaw-cubox-*.tgz
 ```
 
 ### Helper script (optional)
 
-`install.sh` is a local helper. It only does two things:
+`install.sh` is a local helper. It does three things:
 - build `dist/index.js`
-- run `openclaw plugins install <repo-path>` when `openclaw` command is available
+- run `npm pack` to generate a local release `.tgz`
+- run `openclaw plugins install <.tgz>` when `openclaw` command is available
 
 ```bash
 ./install.sh
@@ -144,6 +146,7 @@ save https://example.com to folder "Reading"
 - **Permission denied**: Run `chmod +x install.sh` to make the script executable
 - **Build fails**: Check that dependencies are installed, then run `npm run build`
 - **OpenClaw not found**: Ensure OpenClaw is installed and properly configured
+- **Installed to wrong path (`~/.openclaw/.openclaw/...`)**: run `unset OPENCLAW_HOME` and reinstall
 
 ### Platform-Specific Notes
 
@@ -166,10 +169,13 @@ save https://example.com to folder "Reading"
 
 ```bash
 # Install dev dependencies
-npm install
+npm ci
 
 # Build
 npm run build
+
+# Pack local release
+npm pack
 
 # Type check
 npm run typecheck

@@ -22,17 +22,26 @@
     "url": "https://github.com/littlehedgehog/openclaw-cubox/issues"
   },
   "homepage": "https://github.com/littlehedgehog/openclaw-cubox#readme",
-  "private": true,
   "type": "module",
-  "main": "index.js",
+  "main": "./dist/index.js",
+  "files": [
+    "dist",
+    "openclaw.plugin.json",
+    "skills",
+    "README.md",
+    "LICENSE"
+  ],
+  "openclaw": {
+    "extensions": [
+      "./dist/index.js"
+    ]
+  },
   "scripts": {
-    "build": "tsc",
-    "dev": "tsc --watch",
-    "lint": "eslint . --ext .ts",
-    "clean": "rm -rf index.js *.js.map",
-    "prepublishOnly": "npm run build",
-    "test": "echo \"No tests specified\" && exit 0",
-    "prepare": "npm run build"
+    "clean": "rm -rf dist",
+    "build": "npm run clean && esbuild index.ts --bundle --platform=node --target=node18 --format=esm --outfile=dist/index.js",
+    "typecheck": "tsc --noEmit",
+    "dev": "npm run build -- --sourcemap",
+    "prepublishOnly": "npm run build"
   },
   "engines": {
     "node": ">=18.0.0"
@@ -47,6 +56,7 @@
   ],
   "devDependencies": {
     "@types/node": "^22.0.0",
+    "esbuild": "^0.25.0",
     "typescript": "^5.0.0"
   }
 }

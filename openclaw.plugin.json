@@ -2,11 +2,11 @@
   "id": "cubox",
   "name": "Cubox",
   "description": "Save URLs to Cubox bookmark service",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "OpenClaw Community",
   "license": "MIT",
   "skills": ["./skills"],
-  "tools": ["./index.js"],
+  "tools": ["./dist/index.js"],
   "configSchema": {
     "type": "object",
     "properties": {

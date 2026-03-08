@@ -19,14 +19,33 @@ Save URLs to [Cubox](https://cubox.pro) bookmark service directly from OpenClaw.
 
 ## Installation
 
-### Quick Install
+### Install from npm (recommended)
 
 ```bash
-cd /path/to/cubox
+openclaw plugins install @openclaw/cubox
+```
+
+### Install from local source (for development)
+
+```bash
+git clone https://github.com/littlehedgehog/openclaw-cubox.git
+cd openclaw-cubox
+npm install
+npm run build
+openclaw plugins install .
+```
+
+### Helper script (optional)
+
+`install.sh` is a local helper. It only does two things:
+- build `dist/index.js`
+- run `openclaw plugins install <repo-path>` when `openclaw` command is available
+
+```bash
 ./install.sh
 ```
 
-### Platform-Specific Instructions
+### Platform-Specific Notes
 
 #### macOS
 1. Ensure you have Node.js 18+ installed:
@@ -62,23 +81,6 @@ cd /path/to/cubox
    ```bash
    chmod +x install.sh
    ./install.sh
-   ```
-
-### Manual Install
-
-1. Clone or download this repository
-
-2. Install dependencies and compile:
-   ```bash
-   npm install
-   npm run build
-   ```
-
-3. Copy to OpenClaw extensions directory:
-   ```bash
-   mkdir -p ~/.openclaw/extensions/cubox
-   cp index.js package.json openclaw.plugin.json ~/.openclaw/extensions/cubox/
-   cp -r skills ~/.openclaw/extensions/cubox/
    ```
 
 ## Configuration
@@ -140,7 +142,7 @@ save https://example.com to folder "Reading"
 
 - **Node.js not found**: Ensure Node.js 18+ is installed and in your PATH
 - **Permission denied**: Run `chmod +x install.sh` to make the script executable
-- **Compilation fails**: Check that TypeScript and dependencies are properly installed
+- **Build fails**: Check that dependencies are installed, then run `npm run build`
 - **OpenClaw not found**: Ensure OpenClaw is installed and properly configured
 
 ### Platform-Specific Notes
@@ -153,11 +155,12 @@ save https://example.com to folder "Reading"
 | File | Description |
 |------|-------------|
 | `index.ts` | Plugin main entry (TypeScript source) |
+| `dist/index.js` | Bundled runtime entry for OpenClaw |
 | `openclaw.plugin.json` | Plugin definition for OpenClaw |
 | `skills/SKILL.md` | Skill documentation for AI |
 | `package.json` | npm package definition |
-| `tsconfig.json` | TypeScript configuration |
-| `install.sh` | Installation script |
+| `tsconfig.json` | TypeScript type-check configuration |
+| `install.sh` | Local build + install helper |
 
 ## Development
 
@@ -168,8 +171,8 @@ npm install
 # Build
 npm run build
 
-# Watch mode
-npm run build -- --watch
+# Type check
+npm run typecheck
 ```
 
 ## License

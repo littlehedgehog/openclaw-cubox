@@ -22,7 +22,7 @@ Save URLs to [Cubox](https://cubox.pro) bookmark service directly from OpenClaw.
 ### Install from npm (recommended)
 
 ```bash
-openclaw plugins install @openclaw/cubox
+openclaw plugins install @hedgehog-labs/openclaw-cubox
 ```
 
 ### Install from local source (for development)

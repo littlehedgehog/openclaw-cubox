@@ -1,6 +1,6 @@
 {
   "name": "@hedgehog-labs/openclaw-cubox",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "OpenClaw plugin to save URLs to Cubox bookmark service",
   "keywords": [
     "openclaw",

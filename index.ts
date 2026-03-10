@@ -5,7 +5,6 @@
  *
  * Configuration:
  * - Set `apiUrl` in OpenClaw main config file under `plugins.entries.cubox.config`
- * - Or set `CUBOX_API_URL` environment variable as fallback
  *
  * IMPORTANT: The config.json in plugin directory is NOT loaded automatically.
  * All configuration must be in OpenClaw's main config file (~/.openclaw/openclaw.json):
@@ -122,9 +121,9 @@ function log(requestId: string, level: "info" | "warn" | "error", message: strin
 }
 
 function getApiUrl(pluginApiUrl?: string): string {
-  const configured = (pluginApiUrl ?? process.env.CUBOX_API_URL ?? "").trim();
+  const configured = (pluginApiUrl ?? "").trim();
   if (!configured) {
-    throw new Error("Missing CUBOX_API_URL. Set it to your full Cubox endpoint URL containing the token.");
+    throw new Error("Missing cubox apiUrl. Set plugins.entries.cubox.config.apiUrl in your OpenClaw config.");
   }
   return configured;
 }
